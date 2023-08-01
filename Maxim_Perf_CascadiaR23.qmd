@@ -1,10 +1,35 @@
 ---
 title: "Maximizing Performance: Strategies for Code Optimization"
 author: "Valeria Duran"
-format: revealjs
+format:
+  revealjs:
+    embed-resources: true
 editor: visual
 fig-cap-location: bottom
+execute:
+  freeze: true
+# code-block-bg: true
 ---
+
+```{css, echo = FALSE}
+.justify {
+  text-align: justify !important
+}
+
+.center {
+  text-align: center !important
+}
+
+
+code.sourceCode {
+  font-size: 62%;
+}
+
+.small-code{
+  font-size: 72%
+}
+
+```
 
 ## What is Optimization?
 
@@ -33,11 +58,8 @@ Code optimization is the process of enhancing code quality and efficiency.
 > "Make it work, then make it beautiful, then if you really, really have to, make it fast. [**90 percent of the time, if you make it beautiful, it will already be fast.**]{.fragment .highlight-red} So really, just make it beautiful!" --Joe Armstrong
 :::
 
-
 ::: {.fragment .fade-up}
-::: {.fragment .highlight-#cc0000}
 Optimization should be the **final** step of your programming practice. Performance can be high following the pre-optimization steps. Only optimize when it's necessary!
-:::
 :::
 
 ## Steps to Optimize Code {.smaller}
@@ -50,31 +72,146 @@ Optimization should be the **final** step of your programming practice. Performa
     2.  [Use parallelization techniques]{.fragment .highlight-red}
     3.  [Cache frequently used data]{.fragment .highlight-red}
     4.  [Manage memory]{.fragment .highlight-red}
-    5.  [Find a faster function/package]{.fragment .highlight-red} 
-4.  Benchmark code (compare code with your solution)  
+    5.  [Find a faster function/package]{.fragment .highlight-red}
+4.  Benchmark code (compare code with your solution)\
 5.  Execute!
-
-
 :::
 
+## Scenario 1: Working with Big Data! {.smaller}
 
-## TEST {.smaller}
-:::: {.columns}
-
-::: {.column width="40%"}
-contents...
+::: center
+::: {.fragment .semi-fade-out}
+Goal: build a model using the insurance claims of \~25 million lives with two years' worth of data (i.e., billions of records!) to estimate the cost of a procedure.
+:::
 :::
 
-::: {.column width="60%"}
-contents...
+::: fragment
+Steps:
 :::
 
-::::
+::: incremental
+1.  **Partition** data into categories/sections (body region). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}\
+2.  Create R scripts with tidyverse on a small dataset (Houston, Texas population for 1 year). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}\
+3.  Apply same scripts to a larger dataset (Texas population for 1 year). [<span style="color:red">{{< fa thumbs-down >}}]{.fragment}\
+4.  Update scripts to use data.table instead of tidyverse. [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}\
+5.  Increase Windows instance (increasing RAM from 16GB to 32 GB). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment} [<span style="color:red">{{< fa thumbs-down >}}]{.fragment} \
+6.  Run script on body regions (nationwide, and on two years of data). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}
+:::
 
-## Code
+. . .
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+::: center
+Took **months** to complete...
+:::
 
-```{r}
-1 + 1
+. . .
+
+::: center
+...Other solutions are also possible!
+:::
+
+## Scenario 2: End User in Mind
+
+::: small-code
+```{r profvis}
+#| echo: true
+#| output-location: column
+#| code-overflow: wrap
+#| code-line-numbers: "|1"
+
+# R Studio Server: 420ms
+
+# R Studio Desktop Below
+
+library(profvis)
+library(git2r)
+
+profvis({
+  git_object <-
+    function(data_object = NULL) {
+      object_names <- sort(unique(subset(odb_blobs(), grepl(".rda", name))$name))
+      
+      git_obj <- grep(data_object, object_names, value = TRUE, ignore.case = TRUE)
+      
+      return(git_obj)
+      
+    }
+  
+  git_object("pkg")
+})
+
+
+
 ```
+:::
+
+------------------------------------------------------------------------
+
+```{r microbenchmark}
+#| echo: true
+#| results: hide
+#| code-overflow: wrap
+#| code-line-numbers: "|4"
+
+library(microbenchmark)
+
+microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name))$name)),
+               git_object2 <- sort(unique(gsub(".*/", "", system2("git" , "ls-files *.rda" , stdout = TRUE)))),
+               times = 10)
+
+
+```
+
+![](images/microbenchmark_output.png){.r-stretch}
+
+. . .
+
+::: center
+... using base R `system2()` produces much faster results than git2r's `odb_blobs()`. Sometimes the newer thing out there isn't always the best option!
+:::
+
+## Useful R Tools
+
+-   Profiling packages: `profvis` and `profile`.
+-   Benchmarking package: `microbenchmark` and `bench`.
+-   Parallel computing packages: `snow` and `parallel`.\
+-   On-disk packages: `ff`, `bigmemory`, and `feather`.\
+-   Use `gc()` (garbage collect) to release memory (not required, but doesn't hurt to use after removing large objects).\
+-   Use package `data.table` for faster computations.
+
+## Can Optimizing Code Be a Bad Thing?
+
+"The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; **premature optimization is the root of all evil (or at least most of it) in programming."**\
+- Donald Knuth, Computer Programming as an Art
+
+## When is Optimizing Code Bad? {auto-animate="true"}
+
+-   When code becomes less readable.\
+-   When performance improvement is minuscule.\
+-   When time needed to optimize is longer than the task at hand.\
+-   When code is not used frequently enough.
+
+. . .
+
+::: {style="margin-bottom: 200px; font-size: 4em; color: red;"}
+TIME!
+:::
+
+![](images/time.png){.absolute bottom="0" right="50" width="250" height="250"}
+
+## Conclusion
+
+-   When writing code, consider the end user. What the majority will use might not be what you use. This will save you a lot of future rework.\
+-   Trustworthy code is oftentimes better than fast code.
+-   Don't optimize unless you absolutely must.
+-   Consider the biggest trade off: time. Is it worth it?
+
+## Resources
+
+-   [Efficient R Programming](https://csgillespie.github.io/efficientR/)
+
+-   [Advanced R: Improving Performance](https://adv-r.hadley.nz/perf-improve.html#perf-improve)
+
+-   [97 Things Every Programmer Should Know](https://97-things-every-x-should-know.gitbook.io/97-things-every-programmer-should-know/en)
+
+-   [Best Coding Practices in R](https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/)
