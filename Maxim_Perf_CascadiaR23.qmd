@@ -1,0 +1,80 @@
+---
+title: "Maximizing Performance: Strategies for Code Optimization"
+author: "Valeria Duran"
+format: revealjs
+editor: visual
+fig-cap-location: bottom
+---
+
+## What is Optimization?
+
+::: {.fragment fragment-index="1"}
+> An act, process, or methodology of making something (such as a design, system, or decision) as fully perfect, functional, or effective as possible. -- Merriam-Webster
+:::
+
+::: {.fragment fragment-index="2"}
+Code optimization is the process of enhancing code quality and efficiency.
+:::
+
+::: {.fragment fragment-index="3"}
+![xkcd comics](images/biology_optimization.png){fig-align="center"}
+:::
+
+## Pre-Optimization Steps {.smaller}
+
+::: incremental
+-   Make the code work.
+-   Don't repeat yourself.
+-   Write clean code and document it well.
+-   Don't try to reinvent the wheel.
+:::
+
+::: {.fragment .fade-in}
+> "Make it work, then make it beautiful, then if you really, really have to, make it fast. [**90 percent of the time, if you make it beautiful, it will already be fast.**]{.fragment .highlight-red} So really, just make it beautiful!" --Joe Armstrong
+:::
+
+
+::: {.fragment .fade-up}
+::: {.fragment .highlight-#cc0000}
+Optimization should be the **final** step of your programming practice. Performance can be high following the pre-optimization steps. Only optimize when it's necessary!
+:::
+:::
+
+## Steps to Optimize Code {.smaller}
+
+::: incremental
+1.  Make sure code runs as expected, is clean, is well documented, and is created with the **end user** in mind.
+2.  Profile code (identify where the slow code is)
+3.  Find other solutions
+    1.  [Vectorize code when possible]{.fragment .highlight-red}
+    2.  [Use parallelization techniques]{.fragment .highlight-red}
+    3.  [Cache frequently used data]{.fragment .highlight-red}
+    4.  [Manage memory]{.fragment .highlight-red}
+    5.  [Find a faster function/package]{.fragment .highlight-red} 
+4.  Benchmark code (compare code with your solution)  
+5.  Execute!
+
+
+:::
+
+
+## TEST {.smaller}
+:::: {.columns}
+
+::: {.column width="40%"}
+contents...
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+
+::::
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
