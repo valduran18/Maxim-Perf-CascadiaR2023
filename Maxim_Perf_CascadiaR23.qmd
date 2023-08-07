@@ -149,7 +149,7 @@ profvis({
 
 ```{r microbenchmark}
 #| echo: true
-#| results: hide
+#| eval: false
 #| code-overflow: wrap
 #| code-line-numbers: "|4"
 
@@ -173,11 +173,11 @@ microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name)
 ## Useful R Tools
 
 -   Profiling packages: `profvis` and `profile`.
--   Benchmarking package: `microbenchmark` and `bench`.  
--   Caching packages: `memoise` and `mustache`.\  
+-   Benchmarking package: `microbenchmark` and `bench`.\
+-   Caching packages: `memoise` (non-persistent by default) and `R.cache` (persistent). 
 -   Parallel computing packages: `snow` and `parallel`.\
--   On-disk packages: `ff`, `bigmemory`, and `feather`.\
--   Use `gc()` (garbage collect) to release memory (not required, but doesn't hurt to use after removing large objects).\
+-   Out-of-memory data packages: `ff`, `bigmemory`, and `feather`.\
+-   Use `gc()` (garbage collect) to release memory (R automatically runs this, but it doesn't hurt to use after removing large objects).\
 -   Use package `data.table` for faster computations.
 
 ## Can Optimizing Code Be a Bad Thing?
