@@ -173,7 +173,8 @@ microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name)
 ## Useful R Tools
 
 -   Profiling packages: `profvis` and `profile`.
--   Benchmarking package: `microbenchmark` and `bench`.
+-   Benchmarking package: `microbenchmark` and `bench`.  
+-   Caching packages: `memoise` and `mustache`.\  
 -   Parallel computing packages: `snow` and `parallel`.\
 -   On-disk packages: `ff`, `bigmemory`, and `feather`.\
 -   Use `gc()` (garbage collect) to release memory (not required, but doesn't hurt to use after removing large objects).\
@@ -188,7 +189,7 @@ microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name)
 
 -   When code becomes less readable.\
 -   When performance improvement is minuscule.\
--   When time needed to optimize is longer than the task at hand.\
+-   When the time needed to optimize is longer than the task at hand.\
 -   When code is not used frequently enough.
 
 . . .
@@ -204,7 +205,7 @@ TIME!
 -   When writing code, consider the end user. What the majority will use might not be what you use. This will save you a lot of future rework.\
 -   Trustworthy code is oftentimes better than fast code.
 -   Don't optimize unless you absolutely must.
--   Consider the biggest trade off: time. Is it worth it?
+-   Consider the biggest trade-off: **time**. Is it worth it?
 
 ## Resources
 
