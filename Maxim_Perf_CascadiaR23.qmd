@@ -29,6 +29,11 @@ code.sourceCode {
   font-size: 72%
 }
 
+.output-code{
+  font-size: 60%
+}
+
+
 ```
 
 ## What is Optimization?
@@ -149,9 +154,11 @@ profvis({
 
 ```{r microbenchmark}
 #| echo: true
-#| eval: false
+#| eval: true
 #| code-overflow: wrap
 #| code-line-numbers: "|4"
+#| class-output: output-code
+#| output-location: fragment
 
 library(microbenchmark)
 
@@ -162,7 +169,7 @@ microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name)
 
 ```
 
-![](images/microbenchmark_output.png){.r-stretch}
+<!-- ![](images/microbenchmark_output.png){.r-stretch} -->
 
 . . .
 
@@ -177,7 +184,7 @@ microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name)
 -   Caching packages: `memoise` (non-persistent by default) and `R.cache` (persistent). 
 -   Parallel computing packages: `snow` and `parallel`.\
 -   Out-of-memory data packages: `ff`, `bigmemory`, and `feather`.\
--   Use `gc()` (garbage collect) to release memory (R automatically runs this, but it doesn't hurt to use after removing large objects).\
+-   Use `gc()` (garbage collect) to release memory (not needed, but it doesn't hurt to use after removing large objects).\
 -   Use package `data.table` for faster computations.
 
 ## Can Optimizing Code Be a Bad Thing?
