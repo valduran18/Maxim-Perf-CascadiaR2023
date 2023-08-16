@@ -3,6 +3,8 @@ title: "Maximizing Performance: Strategies for Code Optimization"
 author: "Valeria Duran"
 format:
   revealjs:
+    slide-number: c
+    logo: images/Fred-Hutch-Logo-Primary-RGB.png
     embed-resources: true
 editor: visual
 fig-cap-location: bottom
@@ -10,6 +12,7 @@ execute:
   freeze: true
 # code-block-bg: true
 ---
+
 
 ```{css, echo = FALSE}
 .justify {
@@ -40,10 +43,12 @@ code.sourceCode {
 
 ::: {.fragment fragment-index="1"}
 > An act, process, or methodology of making something (such as a design, system, or decision) as fully perfect, functional, or effective as possible. -- Merriam-Webster
+
 :::
 
 ::: {.fragment fragment-index="2"}
 Code optimization is the process of enhancing code quality and efficiency.
+
 :::
 
 ::: {.fragment fragment-index="3"}
@@ -77,7 +82,7 @@ Optimization should be the **final** step of your programming practice. Performa
     2.  [Use parallelization techniques]{.fragment .highlight-red}
     3.  [Cache frequently used data]{.fragment .highlight-red}
     4.  [Manage memory]{.fragment .highlight-red}
-    5.  [Find a faster function/package]{.fragment .highlight-red}
+    5.  [Find a faster package/function]{.fragment .highlight-red}
 4.  Benchmark code (compare code with your solution)\
 5.  Execute!
 :::
@@ -99,7 +104,7 @@ Steps:
 2.  Create R scripts with tidyverse on a small dataset (Houston, Texas population for 1 year). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}\
 3.  Apply same scripts to a larger dataset (Texas population for 1 year). [<span style="color:red">{{< fa thumbs-down >}}]{.fragment}\
 4.  Update scripts to use data.table instead of tidyverse. [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}\
-5.  Increase Windows instance (increasing RAM from 16GB to 32 GB). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment} [<span style="color:red">{{< fa thumbs-down >}}]{.fragment} \
+5.  Increase Windows instance (increasing RAM from 16GB to 32GB). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment} [<span style="color:red">{{< fa thumbs-down >}}]{.fragment} \
 6.  Run script on body regions (nationwide, and on two years of data). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}
 :::
 
@@ -150,7 +155,7 @@ profvis({
 ```
 :::
 
-------------------------------------------------------------------------
+------------------------------------------------------------------------ 
 
 ```{r microbenchmark}
 #| echo: true
@@ -174,18 +179,18 @@ microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name)
 . . .
 
 ::: center
-... using base R `system2()` produces much faster results than git2r's `odb_blobs()`. Sometimes the newer thing out there isn't always the best option!
+... using `base::system2()` produces much faster results than `git2r::odb_blobs()`. Sometimes the newer thing out there isn't always the best option!
 :::
 
 ## Useful R Tools
 
--   Profiling packages: `profvis` and `profile`.
--   Benchmarking package: `microbenchmark` and `bench`.\
--   Caching packages: `memoise` (non-persistent by default) and `R.cache` (persistent). 
--   Parallel computing packages: `snow` and `parallel`.\
--   Out-of-memory data packages: `ff`, `bigmemory`, and `feather`.\
--   Use `gc()` (garbage collect) to release memory (not needed, but it doesn't hurt to use after removing large objects).\
--   Use package `data.table` for faster computations.
+-   Profiling packages: `{profvis}` and `{profile}`.
+-   Benchmarking package: `{microbenchmark}` and `{bench}`.\
+-   Caching packages: `{memoise}` (non-persistent by default) and `{R.cache}` (persistent). 
+-   Parallel computing packages: `{snow}` and `{parallel}`.\
+-   Out-of-memory data packages: `{ff}`, `{bigmemory}`, and `{feather}`.\
+-   Use `gc()` to release memory (not needed, but it doesn't hurt to use after removing large objects).\
+-   Use `{data.table}` for faster computations.
 
 ## Can Optimizing Code Be a Bad Thing?
 
@@ -212,7 +217,7 @@ TIME!
 -   When writing code, consider the end user. What the majority will use might not be what you use. This will save you a lot of future rework.\
 -   Trustworthy code is oftentimes better than fast code.
 -   Don't optimize unless you absolutely must.
--   Consider the biggest trade-off: **time**. Is it worth it?
+-   Consider the biggest trade-offs: **time** and **effort**. Is it worth it?
 
 ## Resources
 
