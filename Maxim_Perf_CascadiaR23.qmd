@@ -28,7 +28,7 @@ code.sourceCode {
 }
 
 .small-code{
-  font-size: 72%
+  font-size: 74%
 }
 
 .output-code{
@@ -38,7 +38,7 @@ code.sourceCode {
 
 ```
 
-## What is Optimization?
+## What Is Optimization?
 
 ::: {.fragment fragment-index="1"}
 > An act, process, or methodology of making something (such as a design, system, or decision) as fully perfect, functional, or effective as possible. -- Merriam-Webster
@@ -86,7 +86,7 @@ Optimization should be the **final** step of your programming practice. Performa
 5.  Execute!
 :::
 
-## Scenario 1: Working with Big Data! {.smaller}
+## Scenario 1: Working With Big Data! {.smaller}
 
 ::: center
 ::: {.fragment .semi-fade-out}
@@ -104,7 +104,7 @@ Steps:
 3.  Apply same scripts to a larger dataset (Texas population for 1 year). [<span style="color:red">{{< fa thumbs-down >}}]{.fragment}\
 4.  Update scripts to use data.table instead of tidyverse. [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}\
 5.  Increase Windows instance (increasing RAM from 16GB to 32GB). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment} [<span style="color:red">{{< fa thumbs-down >}}]{.fragment} \
-6.  Run script on body regions (nationwide, and on two years of data). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}
+6.  Run scripts on body regions (nationwide, and on two years of data). [<span style="color:green">{{< fa thumbs-up >}}]{.fragment}
 :::
 
 . . .
@@ -196,7 +196,7 @@ microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name)
 "The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; **premature optimization is the root of all evil (or at least most of it) in programming."**\
 - Donald Knuth, Computer Programming as an Art
 
-## When is Optimizing Code Bad? {auto-animate="true"}
+## When Is Optimizing Code Bad? {auto-animate="true"}
 
 -   When code becomes less readable.\
 -   When performance improvement is minuscule.\
