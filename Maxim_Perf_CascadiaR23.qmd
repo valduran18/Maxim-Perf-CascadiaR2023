@@ -178,7 +178,7 @@ microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name)
 . . .
 
 ::: center
-... using `base::system2()` produces much faster results than `git2r::odb_blobs()`. Sometimes the newer thing out there isn't always the best option!
+... using `base::system2()` produces much faster results than `git2r::odb_blobs()`. Sometimes, what you want to use isn't always the best option for the end user!
 :::
 
 ## Useful R Tools {.smaller}
