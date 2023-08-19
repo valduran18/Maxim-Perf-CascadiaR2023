@@ -84,7 +84,18 @@ Optimization should be the **final** step of your programming practice. Performa
     5.  [Find a faster package/function]{.fragment .highlight-red}
 4.  Benchmark code (compare code with your solution)\
 5.  Execute!
+
 :::
+
+## Useful R Tools {.smaller}
+
+-   Profiling packages: `{profvis}` and `{profile}`.
+-   Benchmarking package: `{microbenchmark}` and `{bench}`.\
+-   Caching packages: `{memoise}` (non-persistent by default) and `{R.cache}` (persistent). 
+-   Parallel computing packages: `{snow}` and `{parallel}`.\
+-   Out-of-memory data packages: `{ff}`, `{bigmemory}`, and `{feather}`.\
+-   Use `gc()` to release memory (not needed, but it doesn't hurt to use after removing large objects).\
+-   Use `{data.table}` for faster computations.
 
 ## Scenario 1: Working With Big Data! {.smaller}
 
@@ -181,15 +192,6 @@ microbenchmark(git_object <- sort(unique(subset(odb_blobs(), grepl(".rda", name)
 ... using `base::system2()` produces much faster results than `git2r::odb_blobs()`. Sometimes, what you want to use isn't always the best option for the end user!
 :::
 
-## Useful R Tools {.smaller}
-
--   Profiling packages: `{profvis}` and `{profile}`.
--   Benchmarking package: `{microbenchmark}` and `{bench}`.\
--   Caching packages: `{memoise}` (non-persistent by default) and `{R.cache}` (persistent). 
--   Parallel computing packages: `{snow}` and `{parallel}`.\
--   Out-of-memory data packages: `{ff}`, `{bigmemory}`, and `{feather}`.\
--   Use `gc()` to release memory (not needed, but it doesn't hurt to use after removing large objects).\
--   Use `{data.table}` for faster computations.
 
 ## Can Optimizing Code Be a Bad Thing?
 
